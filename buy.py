@@ -29,10 +29,6 @@ GPIO.setup(12,GPIO.OUT)     #서보핀을 출력으로 설정
 p=GPIO.PWM(12,50)          #서보핀을 PWM모드 50hz로 사용
 p.start(0)
 
-#--닫히는 코드
-# p.ChangeDutyCycle(7.5)
-# p.ChangeDutyCycle(12.5)
-# time.sleep(1)
 
 
 equa = ""
@@ -45,7 +41,7 @@ def btnPress(num):
     equation.set(equa)   
     buy_key_input.insert(0,  str(equa))
     
-    print(equa)
+    
 
 
 def ClearPress():
@@ -53,21 +49,11 @@ def ClearPress():
     equa = ""
     equation.set("")
 
-# def EnterPress():
-#     global equa
-#     global save_key
-#     total = str(eval(equa))
-#     equation.set(total)
-#     save_key=str(eval(equa))
-#     print(type(save_key))
-#     print(save_key)
-#     window.destroy()
-#     import sale_camera
 
 
-#잠금 열림
+
 def lock_open():
-    print('test')
+    
     p.ChangeDutyCycle(2.5)
     time.sleep(1)
     p.stop()
@@ -81,8 +67,7 @@ def EnterPress():
     total = str(eval(equa))
     equation.set(total)
     save_key=str(eval(equa))
-    print(type(save_key))
-    print(save_key)
+    
     #결제 완료된 상품의 인증번호가 맞는지 확인   
     url="http://ec2-3-39-94-66.ap-northeast-2.compute.amazonaws.com/api_paycheck/result/"
     r = requests.post(url,
@@ -90,8 +75,7 @@ def EnterPress():
     text = r.text
     data = json.loads(text)
     result = data['status']
-    print(result)
-    print(type(result))
+   
         
         # 상품 결제 완료==2
     if result ==str(1):

@@ -34,7 +34,6 @@ key=buy.save_key
 
 #잠금 닫힘,구매 완료 상태(3)로 변화 requests
 def lock_close():
-    print('test')
     p.ChangeDutyCycle(7.5)
     p.ChangeDutyCycle(12.5)
     time.sleep(1)
@@ -42,7 +41,6 @@ def lock_close():
                     json={ "state" : state, "key" : key } )
     text = r.text
     data = json.loads(text)
-    print(data) 
     time.sleep(2)
     window.destroy()
     import main

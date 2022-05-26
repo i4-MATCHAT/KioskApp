@@ -31,17 +31,15 @@ def capture():
         
         #인증번호 저장
         key=sale.sale_key
-        print(key)
+        
 
         #이미지 이름 저장
         image_name='raspberrypi/'+key+".jpg"
-        print(image_name)
+        
 
         #s3 이미지 업로드 및 url 저장
-        s3.upload_file("/home/pi/save_folder/product.jpg", "matchat", 'raspberrypi/'+key+".jpg")
-        print('success')   
+        s3.upload_file("/home/pi/save_folder/product.jpg", "matchat", 'raspberrypi/'+key+".jpg")         
         url="https://s3-%s.amazonaws.com/%s/%s" %(REGION,BUCKET_NAME,image_name)
-        print(url)
         kiosk_photo=url
 
         #detection결과 저장
@@ -49,7 +47,6 @@ def capture():
         image_path="/home/pi/save_folder/product.jpg"
         image_data = open(image_path, "rb").read()
         response = requests.post(detection_url, files={"image": image_data}).json()
-        print(response[0]['name'])
         kiosk_result=response[0]['name']
         
         #동일상품확인 api 요청
@@ -58,9 +55,8 @@ def capture():
 
         text = r.text
         data = json.loads(text)
-        print(data)
         result = data['status']
-        print(result)
+       
         
         
         #result=0:다른상품, result=1:같은상품

@@ -30,12 +30,11 @@ def btnPress(num):
     equation.set(equa)   
     sale_key_input.insert(0,  str(equa))
     
-    print(equa)
 
 
 def ClearPress():
     sale_key_input.delete(0, END)
-    print(sale_key_input)
+    
 
 def EnterPress():
     global equa
@@ -43,8 +42,6 @@ def EnterPress():
     total = str(eval(equa))
     equation.set(total)
     save_key=str(eval(equa))
-    print(type(save_key))
-    print(save_key)
     window.destroy()
     import sale_camera
 
